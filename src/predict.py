@@ -18,4 +18,4 @@ X_new = np.array([[5]])  # Example: Input with 1 feature (ensure this matches tr
 y_pred = model.predict(X_new)
 
 # Print the prediction
-print(f"Prediction: {y_pred}")
+print(f"Prrrediction: {y_pred}")
