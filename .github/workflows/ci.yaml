@@ -78,10 +78,11 @@ jobs:
         run: python src/train.py
 
       - name: Copy Model to Models Directory
-        run: mkdir -p models && [ ! -f models/model.pkl ] && cp src/model.pkl models/
+        run: mkdir -p models 
+        #&& [ ! -f models/model.pkl ] && cp src/model.pkl models/
 
-      - name: Upload Model
-        uses: actions/upload-artifact@v3
-        with:
-          name: trained-model
-          path: models/
+#      - name: Upload Model
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: trained-model
+#          path: models/
