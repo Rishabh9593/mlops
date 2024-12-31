@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline for ML Project
 
 on:
   push:
@@ -22,11 +22,12 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Install dependencies
+      - name: Install Flake8
         run: |
           python -m pip install --upgrade pip
           pip install flake8
-      - name: Run Flake8
+
+      - name: Lint Codebase
         run: flake8 src/ tests/
 
   test:
@@ -42,11 +43,12 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest
+
       - name: Run Tests
         run: pytest tests/
 
@@ -64,7 +66,7 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -73,10 +75,10 @@ jobs:
         run: python src/train.py
 
       - name: Save Model Artifact
-        run: mkdir -p models && cp src/model.pkl models/
-        # Upload artifact (optional)
-      - name: Upload Model
+        run: |
+          mkdir -p models
+          cp models/model.pkl models/
         uses: actions/upload-artifact@v3
         with:
-          name: model
+          name: trained-model
           path: models/
