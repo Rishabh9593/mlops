@@ -49,6 +49,9 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
+      - name: Train Model
+        run: python src/train.py  # Generates models/model.pkl
+
       - name: Run Tests
         run: pytest tests/
 
