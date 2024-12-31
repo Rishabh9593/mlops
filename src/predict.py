@@ -1,34 +1,21 @@
 import pickle
 import numpy as np
-import sys
 
-def load_model(model_path):
-    """Load the trained model from the specified path."""
-    with open(model_path, 'rb') as f:
-        model = pickle.load(f)
-    return model
+# Load the trained model
+with open('models/model.pkl', 'rb') as f:
+    model = pickle.load(f)
 
-def make_prediction(model, input_data):
-    """Use the trained model to make predictions."""
-    prediction = model.predict(input_data)
-    return prediction
+# Example input features
+# If your model was trained with a single feature, for example, you need to make sure the input data
+# for prediction also has only one feature.
+# For demonstration, let's assume the model expects 1 feature
+X_new = np.array([[5]])  # Example: Input with 1 feature (ensure this matches training data)
 
-def main():
-    """Main function to load the model and make predictions."""
-    # Path to the model file
-    model_path = 'models/model.pkl'
+# If your model was trained with multiple features (e.g., 4 features), reshape the input accordingly
+# X_new = np.array([[feature1, feature2, feature3, feature4]])  # Uncomment and replace with actual data
 
-    # Sample input for prediction (adjust this based on your model input)
-    sample_input = np.array([[5.1, 3.5, 1.4, 0.2]])  # Example for Iris dataset, modify as needed
+# Make a prediction
+y_pred = model.predict(X_new)
 
-    # Load the model
-    model = load_model(model_path)
-
-    # Make a prediction
-    prediction = make_prediction(model, sample_input)
-
-    # Print the prediction result
-    print(f'Prediction: {prediction}')
-
-if __name__ == '__main__':
-    main()
+# Print the prediction
+print(f"Prediction: {y_pred}")
