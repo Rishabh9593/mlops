@@ -77,8 +77,8 @@ jobs:
       - name: Train Model
         run: python src/train.py
 
-      - name: Save Model Artifact
-        run: mkdir -p models && cp models/model.pkl models/
+      - name: Copy Model to Models Directory
+        run: mkdir -p models && [ ! -f models/model.pkl ] && cp src/model.pkl models/
 
       - name: Upload Model
         uses: actions/upload-artifact@v3
