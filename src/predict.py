@@ -1,6 +1,6 @@
 import pickle
-import numpy as np
 import pandas as pd
+
 
 # Load the trained model
 with open('models/model.pkl', 'rb') as f:
@@ -10,4 +10,3 @@ X_new = pd.DataFrame({'X': [5]})
 y_pred = model.predict(X_new)
 
 print(f"Prediction for X = {X_new.values.flatten()[0]}: {y_pred[0]}")
-
